@@ -85,6 +85,8 @@ public class AdManagementServiceShould {
         AdDescription adDescription = new AdDescription("El primer anuncio del mundo");
         when(adDatePosted.getDate()).thenReturn("19/03/2020");
         Ad ad = new Ad(adTitle, adDescription, adDatePosted.getDate());
+        AdDTO adDTO = ad.createDTO();
+        when(adRepositoryInMemory.getAd(adTitle)).thenReturn(adDTO);
 
         adManagementService.remove(adTitle);
 
@@ -92,7 +94,7 @@ public class AdManagementServiceShould {
     }
 
     @Test
-    public void trhow_an_error_when_removes_an_ad_and_not_exists_in_the_catalog(){
+    public void trhow_an_error_when_removes_an_ad_and_does_not_exist_in_the_catalog(){
 
         AdTitle adTitle = new AdTitle("Primer anuncio");
 
