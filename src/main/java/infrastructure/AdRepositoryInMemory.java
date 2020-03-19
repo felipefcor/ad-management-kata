@@ -38,5 +38,15 @@ public class AdRepositoryInMemory implements AdRepository {
         }
     }
 
+    @Override
+    public AdDTO getAd(AdTitle adTitle) {
+        for (Ad ad : adList) {
+            AdDTO adDTO = ad.createDTO();
+            if(adDTO.adTitle.equals(adTitle)) return adDTO;
+        }
+        return null;
+    }
+
+
 
 }

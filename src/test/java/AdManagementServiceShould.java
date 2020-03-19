@@ -1,7 +1,9 @@
 import domain.Ad.Ad;
+import domain.Ad.AdDTO;
 import domain.Ad.AdDescription;
 import domain.AdManagementService;
 import domain.Ad.AdTitle;
+import domain.exceptions.AdDoesNotExistException;
 import domain.exceptions.RepeteadAdException;
 import infrastructure.AdRepository;
 import org.junit.Assert;
@@ -87,6 +89,17 @@ public class AdManagementServiceShould {
         adManagementService.remove(adTitle);
 
         verify(adRepositoryInMemory).remove(adTitle);
+    }
+
+    @Test
+    public void trhow_an_error_when_removes_an_ad_and_not_exists_in_the_catalog(){
+
+        AdTitle adTitle = new AdTitle("Primer anuncio");
+
+        when(adRepositoryInMemory.getAd(adTitle)).thenReturn(null);
+
+        Assertions.assertThrows(AdDoesNotExistException.class, () -> adManagementService.remove(adTitle));
+
     }
 
 }

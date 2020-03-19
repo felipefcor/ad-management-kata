@@ -15,5 +15,8 @@ public interface AdRepository {
     List<Ad> getAdList();
 
     void remove(AdTitle adTitle);
+
+    AdDTO getAd(AdTitle adTitle);
+
 }
 

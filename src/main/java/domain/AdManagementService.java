@@ -4,6 +4,7 @@ import domain.Ad.Ad;
 import domain.Ad.AdDTO;
 import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
+import domain.exceptions.AdDoesNotExistException;
 import domain.exceptions.RepeteadAdException;
 import infrastructure.AdRepository;
 import services.AdDatePosted;
@@ -28,7 +29,12 @@ public class AdManagementService {
         return adRepository.getAdList() ;
     }
 
-    public void remove(AdTitle adTitle) {
+    public void remove(AdTitle adTitle) throws AdDoesNotExistException {
+        if(getAd(adTitle) == null) throw new AdDoesNotExistException();
         adRepository.remove(adTitle);
+    }
+
+    public AdDTO getAd(AdTitle adTitle) {
+        return adRepository.getAd(adTitle);
     }
 }
