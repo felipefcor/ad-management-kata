@@ -1,6 +1,10 @@
 package domain;
 
 import domain.Ad.Ad;
+import domain.Ad.AdDTO;
+import domain.Ad.AdDescription;
+import domain.Ad.AdTitle;
+import domain.exceptions.RepeteadAdException;
 import infrastructure.AdRepository;
 import services.AdDatePosted;
 
@@ -13,7 +17,11 @@ public class AdManagementService {
         this.adDatePosted = adDatePosted;
     }
 
-    public void add(Ad ad) {
-        adRepository.save(ad);
+    public void add(AdTitle adTitle, AdDescription adDescription) throws RepeteadAdException {
+
+        if (adRepository.matchAd(adTitle, adDescription)) throw new RepeteadAdException();
+        adRepository.save(new Ad(adTitle, adDescription, adDatePosted.getDate()));
+
     }
+
 }
