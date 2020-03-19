@@ -1,5 +1,7 @@
 package domain.Ad;
 
+import domain.Ad.DTO.AdDTODescription;
+import domain.Ad.DTO.AdDTOTitle;
 import domain.exceptions.TitleTooLongException;
 
 import java.util.Objects;
@@ -11,6 +13,13 @@ public class AdTitle {
         if(adTitle.length() > 50) throw new TitleTooLongException();
         this.adTitle = adTitle;
     }
+
+    public AdDTOTitle createTitleDTO() {
+        AdDTOTitle adDTOTitle = new AdDTOTitle();
+        adDTOTitle.adTitle = this.adTitle;
+        return adDTOTitle;
+    }
+
 
     @Override
     public boolean equals(Object o) {

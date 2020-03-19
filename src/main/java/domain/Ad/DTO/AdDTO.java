@@ -1,4 +1,7 @@
-package domain.Ad;
+package domain.Ad.DTO;
+
+import domain.Ad.AdDescription;
+import domain.Ad.AdTitle;
 
 import java.util.Objects;
 

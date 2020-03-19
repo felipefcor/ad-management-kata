@@ -1,5 +1,10 @@
 package domain.Ad;
 
+import domain.Ad.DTO.AdDTO;
+import domain.Ad.DTO.AdDTODescription;
+import domain.Ad.DTO.AdDTOTitle;
+import domain.exceptions.TitleAndDescriptionAreTheSameException;
+
 import java.util.Objects;
 
 public class Ad {
@@ -8,10 +13,19 @@ public class Ad {
     private String date;
 
     public Ad(AdTitle adTitle, AdDescription adDescription, String date) {
+        if(checkTitleAndDescription(adTitle,adDescription)) throw new TitleAndDescriptionAreTheSameException();
         this.adTitle = adTitle;
         this.adDescription = adDescription;
         this.date = date;
     }
+
+    private boolean checkTitleAndDescription(AdTitle adTitle, AdDescription adDescription) {
+        AdDTOTitle adDTOTitle = adTitle.createTitleDTO();
+        AdDTODescription adDTODescription = adDescription.createDescriptionDTO();
+        if (adDTOTitle.adTitle == adDTODescription.adDescription) return true;
+        return false;
+    }
+
 
     public AdDTO createDTO() {
         AdDTO adDTO = new AdDTO();

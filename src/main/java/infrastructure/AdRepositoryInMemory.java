@@ -1,7 +1,7 @@
 package infrastructure;
 
 import domain.Ad.Ad;
-import domain.Ad.AdDTO;
+import domain.Ad.DTO.AdDTO;
 import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
 

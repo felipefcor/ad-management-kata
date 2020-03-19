@@ -1,5 +1,7 @@
 package domain.Ad;
 
+import domain.Ad.DTO.AdDTODescription;
+
 import java.util.Objects;
 
 public class AdDescription {
@@ -8,6 +10,14 @@ public class AdDescription {
     public AdDescription(String adDescription) {
         this.adDescription = adDescription;
     }
+
+    public AdDTODescription createDescriptionDTO() {
+        AdDTODescription adDTODescription = new AdDTODescription();
+        adDTODescription.adDescription = this.adDescription;
+        return adDTODescription;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
