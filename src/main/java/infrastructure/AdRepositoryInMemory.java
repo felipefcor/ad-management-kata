@@ -24,4 +24,11 @@ public class AdRepositoryInMemory implements AdRepository {
         }
         return false;
     }
+
+    @Override
+    public List<Ad> getAdList() {
+        return this.adList;
+    }
+
+
 }

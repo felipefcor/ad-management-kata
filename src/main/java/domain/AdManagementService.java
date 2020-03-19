@@ -8,6 +8,8 @@ import domain.exceptions.RepeteadAdException;
 import infrastructure.AdRepository;
 import services.AdDatePosted;
 
+import java.util.List;
+
 public class AdManagementService {
     private final AdRepository adRepository;
     private final AdDatePosted adDatePosted;
@@ -18,10 +20,11 @@ public class AdManagementService {
     }
 
     public void add(AdTitle adTitle, AdDescription adDescription) throws RepeteadAdException {
-
         if (adRepository.matchAd(adTitle, adDescription)) throw new RepeteadAdException();
         adRepository.save(new Ad(adTitle, adDescription, adDatePosted.getDate()));
-
     }
 
+    public List<Ad> getAdList() {
+        return adRepository.getAdList() ;
+    }
 }
