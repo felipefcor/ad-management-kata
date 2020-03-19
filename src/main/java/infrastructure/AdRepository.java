@@ -13,5 +13,7 @@ public interface AdRepository {
     Boolean matchAd(AdTitle adTitle, AdDescription adDescription);
 
     List<Ad> getAdList();
+
+    void remove(AdTitle adTitle);
 }
 

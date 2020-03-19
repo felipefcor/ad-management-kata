@@ -27,4 +27,8 @@ public class AdManagementService {
     public List<Ad> getAdList() {
         return adRepository.getAdList() ;
     }
+
+    public void remove(AdTitle adTitle) {
+        adRepository.remove(adTitle);
+    }
 }

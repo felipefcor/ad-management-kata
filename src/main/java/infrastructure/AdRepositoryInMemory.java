@@ -30,5 +30,13 @@ public class AdRepositoryInMemory implements AdRepository {
         return this.adList;
     }
 
+    @Override
+    public void remove(AdTitle adTitle) {
+     for (Ad ad : adList) {
+         AdDTO adDTO = ad.createDTO();
+         if(adDTO.adTitle.equals(adTitle)) adList.remove(adDTO);
+        }
+    }
+
 
 }

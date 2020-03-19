@@ -32,12 +32,13 @@ public class AdManagementServiceShould {
         MockitoAnnotations.initMocks(this);
     }
     @Test
-        public void send_new_ad_to_repo(){
+        public void send_new_ad_to_catalog(){
 
         AdTitle adTitle = new AdTitle("Primer anuncio");
         AdDescription adDescription = new AdDescription("El primer anuncio del mundo");
         when(adDatePosted.getDate()).thenReturn("19/03/2020");
         Ad ad = new Ad(adTitle, adDescription, adDatePosted.getDate() );
+
         adManagementService.add(adTitle, adDescription);
 
         verify(adRepositoryInMemory).save(ad);
@@ -56,7 +57,7 @@ public class AdManagementServiceShould {
     }
 
     @Test
-        public void retrieve_the_ads_list_from_repository(){
+        public void retrieve_the_ads_list_from_catalog(){
 
         AdTitle adTitle = new AdTitle("Primer anuncio");
         AdDescription adDescription = new AdDescription("El primer anuncio del mundo");
@@ -73,6 +74,19 @@ public class AdManagementServiceShould {
 
         Assert.assertEquals(2, adManagementService.getAdList().size());
 
+    }
+
+    @Test
+        public void remove_an_ad_from_catalog(){
+
+        AdTitle adTitle = new AdTitle("Primer anuncio");
+        AdDescription adDescription = new AdDescription("El primer anuncio del mundo");
+        when(adDatePosted.getDate()).thenReturn("19/03/2020");
+        Ad ad = new Ad(adTitle, adDescription, adDatePosted.getDate());
+
+        adManagementService.remove(adTitle);
+
+        verify(adRepositoryInMemory).remove(adTitle);
     }
 
 }
