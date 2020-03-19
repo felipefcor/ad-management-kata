@@ -1,11 +1,14 @@
 package domain.Ad;
 
+import domain.exceptions.TitleTooLongException;
+
 import java.util.Objects;
 
 public class AdTitle {
     private String adTitle;
 
-    public AdTitle(String adTitle) {
+    public AdTitle(String adTitle){
+        if(adTitle.length() > 50) throw new TitleTooLongException();
         this.adTitle = adTitle;
     }
 
