@@ -2,6 +2,6 @@ package domain.Ad.DTO;
 
 import java.util.Queue;
 
-public class AdAccessesDTO {
+public class AdVisitsDTO {
     public Queue<Integer> queueVisits;
 }

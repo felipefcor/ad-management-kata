@@ -102,7 +102,7 @@ public class AdRepositoryInMemoryShould {
                 AdTitle adTitle = new AdTitle("Primer anuncio" + i);
                 AdDescription adDescription = new AdDescription("El primer anuncio del mundo" + i );
                 Ad ad = new Ad(adTitle, adDescription, new AdDatePostedFormat(Integer.toString(j) + "/0"+ Integer.toString(i) + "/2020"));
-                ad.createDTO().adAccesses.createAdAccessesDTO().queueVisits.add(i+j);
+                ad.createDTO().adVisits.createAdAccessesDTO().queueVisits.add(i+j);
                 adRepositoryInMemory.save(ad);
             }
         }

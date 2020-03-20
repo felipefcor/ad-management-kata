@@ -1,16 +1,16 @@
 package domain.Ad;
 
-import domain.Ad.DTO.AdAccessesDTO;
+import domain.Ad.DTO.AdVisitsDTO;
 
 import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Queue;
 
-public class AdAccesses {
+public class AdVisits {
 
     Queue<Integer> queueVisits;
 
-    public AdAccesses() {
+    public AdVisits() {
         queueVisits = new LinkedList<Integer>();
     }
 
@@ -22,17 +22,17 @@ public class AdAccesses {
         return queueVisits.size();
     }
 
-    public AdAccessesDTO createAdAccessesDTO() {
-        AdAccessesDTO adAccessesDTO = new AdAccessesDTO();
-        adAccessesDTO.queueVisits = this.queueVisits;
-        return adAccessesDTO;
+    public AdVisitsDTO createAdAccessesDTO() {
+        AdVisitsDTO adVisitsDTO = new AdVisitsDTO();
+        adVisitsDTO.queueVisits = this.queueVisits;
+        return adVisitsDTO;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AdAccesses that = (AdAccesses) o;
+        AdVisits that = (AdVisits) o;
         return Objects.equals(queueVisits, that.queueVisits);
     }
 

@@ -20,15 +20,15 @@ public class SortAndRemoveTheLessVisitedAdShould {
         AdTitle adTitle = new AdTitle("Primer anuncio");
         AdDescription adDescription = new AdDescription("El primer anuncio del mundo");
         Ad ad = new Ad(adTitle, adDescription, new AdDatePostedFormat("17/03/2020"));
-        ad.createDTO().adAccesses.createAdAccessesDTO().queueVisits.add(15);
+        ad.createDTO().adVisits.createAdAccessesDTO().queueVisits.add(15);
         AdTitle newAdTitle = new AdTitle("Segundo anuncio");
         AdDescription newAdDescription = new AdDescription("El segundo anuncio del mundo");
         Ad newAd = new Ad(newAdTitle, newAdDescription, new AdDatePostedFormat("19/03/2020"));
-        newAd.createDTO().adAccesses.createAdAccessesDTO().queueVisits.add(10);
+        newAd.createDTO().adVisits.createAdAccessesDTO().queueVisits.add(10);
         AdTitle thirdAdTitle = new AdTitle("Tercer anuncio");
         AdDescription thirdAdDescription = new AdDescription("El tercer anuncio del mundo");
         Ad thirdAd = new Ad(thirdAdTitle, thirdAdDescription, new AdDatePostedFormat("14/03/2020"));
-        thirdAd.createDTO().adAccesses.createAdAccessesDTO().queueVisits.add(25);
+        thirdAd.createDTO().adVisits.createAdAccessesDTO().queueVisits.add(25);
 
         List<Ad> ads = new ArrayList<>();
         ads.add(ad);
