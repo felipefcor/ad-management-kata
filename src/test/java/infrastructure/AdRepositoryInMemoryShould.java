@@ -1,6 +1,7 @@
 package infrastructure;
 
 import domain.Ad.Ad;
+import domain.Ad.AdAccesses;
 import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
 import org.junit.Assert;
@@ -89,8 +90,10 @@ public class AdRepositoryInMemoryShould {
                 Ad ad = new Ad(adTitle, adDescription, new AdDatePostedFormat(Integer.toString(j) + "/0"+ Integer.toString(i) + "/2020"));
                 adRepositoryInMemory.save(ad);
             }
-       }
+        }
         Assert.assertEquals(100, adRepositoryInMemory.getAdList().size());
     }
+
+
 
 }

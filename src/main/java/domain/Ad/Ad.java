@@ -12,6 +12,7 @@ public class Ad {
     private AdTitle adTitle;
     private AdDescription adDescription;
     private AdDatePostedFormat date;
+    AdAccesses adAccesses = new AdAccesses();
 
     public Ad(AdTitle adTitle, AdDescription adDescription, AdDatePostedFormat date) {
         if(checkTitleAndDescription(adTitle,adDescription)) throw new TitleAndDescriptionAreTheSameException();
@@ -33,6 +34,8 @@ public class Ad {
         adDTO.adTitle = this.adTitle;
         adDTO.adDescription = this.adDescription;
         adDTO.date = this.date;
+        adDTO.adAccesses = this.adAccesses;
+
         return adDTO;
     }
 
@@ -40,6 +43,9 @@ public class Ad {
         return this.date.createDTOdate().adDate;
     }
 
+    public <T> Comparable getAdTimesAccesed() {
+        return this.adAccesses.createAdAccessesDTO().queueVisits.element().intValue();
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,11 +53,13 @@ public class Ad {
         Ad ad = (Ad) o;
         return Objects.equals(adTitle, ad.adTitle) &&
                 Objects.equals(adDescription, ad.adDescription) &&
-                Objects.equals(date, ad.date);
+                Objects.equals(date, ad.date) &&
+                Objects.equals(adAccesses, ad.adAccesses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(adTitle, adDescription, date);
+        return Objects.hash(adTitle, adDescription, date, adAccesses);
     }
+
 }
