@@ -1,6 +1,5 @@
 package domain.Ad;
 
-import domain.Ad.DTO.AdDTODescription;
 import domain.Ad.DTO.AdDTOTitle;
 import domain.exceptions.TitleTooLongException;
 
@@ -32,6 +31,13 @@ public class AdTitle {
     @Override
     public int hashCode() {
         return Objects.hash(adTitle);
+    }
+
+    @Override
+    public String toString() {
+        return "AdTitle{" +
+                "adTitle='" + adTitle + '\'' +
+                '}';
     }
 }
 
