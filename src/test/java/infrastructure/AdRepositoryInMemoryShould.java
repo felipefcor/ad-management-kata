@@ -80,7 +80,7 @@ public class AdRepositoryInMemoryShould {
     }
 
     @Test
-    public void remove_the_oldest_ad_when_the_catalog_reaches_100_ads(){
+    public void allow_to_insert_100_ads_when_expire_oldest_ads_strategy_is_called(){
         AdRepositoryInMemory adRepositoryInMemory = new AdRepositoryInMemoryExpireByOldestAd();
         for (int i = 1; i < 7 ; i++) {
             for (int j = 10; j <30 ; j++) {
@@ -94,8 +94,8 @@ public class AdRepositoryInMemoryShould {
     }
 
     @Test
-    public void remove_the_less_visited_ad_when_the_catalog_reaches_100_ads(){
-        AdRepositoryInMemory adRepositoryInMemory = new AdRepositoryInMemoryExpireByOldestAd();
+    public void allow_to_insert_100_ads_when_expire_less_visited_ads_strategy_is_called(){
+        AdRepositoryInMemory adRepositoryInMemory = new AdRepositoryInMemoryExpireByLessVisitedAd();
 
        for (int i = 1; i < 7 ; i++) {
             for (int j = 10; j <30 ; j++) {
