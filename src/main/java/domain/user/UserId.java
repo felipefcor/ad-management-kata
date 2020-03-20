@@ -1,5 +1,8 @@
 package domain.user;
 
+import domain.user.DTO.UserDTO;
+import domain.user.DTO.UserIdDTO;
+
 import java.util.Objects;
 
 public class UserId {
@@ -7,6 +10,12 @@ public class UserId {
 
     public UserId(int userId) {
         this.userId = userId;
+    }
+
+    public UserIdDTO createUserIdDTO() {
+        UserIdDTO userIdDTO = new UserIdDTO();
+        userIdDTO.userId = this.userId;
+        return userIdDTO;
     }
 
     @Override

@@ -1,5 +1,8 @@
 package domain.user;
 
+import domain.Ad.DTO.AdDTO;
+import domain.user.DTO.UserDTO;
+
 import java.util.Objects;
 
 public class User {
@@ -9,7 +12,11 @@ public class User {
 
         this.userId = userId;
     }
-
+    public UserDTO createUserDTO() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.userId = this.userId;
+        return userDTO;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

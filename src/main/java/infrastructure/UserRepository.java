@@ -2,6 +2,8 @@ package infrastructure;
 
 
 import domain.Ad.Ad;
+import domain.Ad.DTO.AdDTO;
+import domain.user.DTO.UserDTO;
 import domain.user.User;
 
 import java.util.ArrayList;
@@ -17,15 +19,25 @@ public class UserRepository {
         this.userList.add(user);
     }
 
-    public List<User> getUsers() {
-        return this.userList;
+    public List<UserDTO> getUsers() {
+        List<UserDTO> userDTOList = new ArrayList<>();
+        for (User user : this.userList) {
+            UserDTO userDTO = user.createUserDTO();
+            userDTOList.add(userDTO);
+        }
+        return userDTOList;
     }
 
     public void favoriteAds(Ad ad) {
         this.favoriteAds.add(ad);
     }
 
-    public List<Ad> getFavoriteAds() {
-        return this.favoriteAds;
+    public List<AdDTO> getFavoriteAds() {
+        List<AdDTO> adDTOList = new ArrayList<>();
+        for (Ad ad : this.favoriteAds) {
+            AdDTO adDTO = ad.createDTO();;
+            adDTOList.add(adDTO);
+        }
+        return adDTOList;
     }
 }
