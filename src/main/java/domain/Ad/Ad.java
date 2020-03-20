@@ -4,15 +4,21 @@ import domain.Ad.DTO.AdDTO;
 import domain.Ad.DTO.AdDTODescription;
 import domain.Ad.DTO.AdDTOTitle;
 import domain.exceptions.TitleAndDescriptionAreTheSameException;
+import domain.user.DTO.UserDTO;
+import domain.user.User;
 import services.AdDatePostedFormat;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Ad {
+
     private AdTitle adTitle;
     private AdDescription adDescription;
     private AdDatePostedFormat date;
-    AdVisits adVisits = new AdVisits();
+    private AdVisits adVisits = new AdVisits();
+    List<User> favouriteUsers = new ArrayList<>();
 
     public Ad(AdTitle adTitle, AdDescription adDescription, AdDatePostedFormat date) {
         if(checkTitleAndDescription(adTitle,adDescription)) throw new TitleAndDescriptionAreTheSameException();
@@ -45,6 +51,19 @@ public class Ad {
 
     public <T> Comparable getAdTimesAccesed() {
         return this.adVisits.createAdAccessesDTO().queueVisits.element().intValue();
+    }
+
+    public void markedAsAFavouriteByAUser(User user) {
+        favouriteUsers.add(user);
+    }
+
+    public List<UserDTO> getNumberOfUserMarkedAsAFavourite() {
+        List<UserDTO> userDTOList = new ArrayList<>();
+        for (User user : this.favouriteUsers) {
+            UserDTO userDTO = user.createUserDTO();
+            userDTOList.add(userDTO);
+        }
+        return userDTOList;
     }
     @Override
     public boolean equals(Object o) {
