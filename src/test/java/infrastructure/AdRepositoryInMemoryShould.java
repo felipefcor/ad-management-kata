@@ -90,7 +90,7 @@ public class AdRepositoryInMemoryShould {
                 adRepositoryInMemory.save(ad);
             }
        }
-
         Assert.assertEquals(100, adRepositoryInMemory.getAdList().size());
     }
+
 }

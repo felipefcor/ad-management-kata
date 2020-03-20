@@ -15,12 +15,12 @@ public class AdRepositoryInMemory implements AdRepository {
 
     @Override
     public void save(Ad ad) {
-        if (this.adList.size() == 100) sortAds();
+        if (this.adList.size() == 100) this.adList = sortAds();
         this.adList.add(ad);
     }
 
-    private void sortAds(){
-       sortAdsByCountry.sortAds(this.adList);
+    private List<Ad> sortAds(){
+       return sortAdsByCountry.sortAds(this.adList);
    }
 
 
