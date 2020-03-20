@@ -69,8 +69,4 @@ public class AdRepositoryInMemory implements AdRepository {
         }
     }
 
-    @Override
-    public void adMarkedAsFavoriteByUser(User user, Ad ad) {
-
-    }
 }

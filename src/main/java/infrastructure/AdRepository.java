@@ -23,6 +23,5 @@ public interface AdRepository {
 
     void purge(AdDatePostedFormat date);
 
-    void adMarkedAsFavoriteByUser(User user, Ad ad);
-}
+   }
 

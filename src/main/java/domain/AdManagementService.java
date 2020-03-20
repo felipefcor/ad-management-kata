@@ -44,7 +44,5 @@ public class AdManagementService {
         adRepository.purge(date);
     }
 
-    public void adMarkedAsFavoriteByUser(User user, Ad ad) {
-        adRepository.adMarkedAsFavoriteByUser(user, ad);
-    }
+
 }
