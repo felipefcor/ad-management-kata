@@ -1,9 +1,12 @@
+package domain.ad;
+
 import domain.Ad.Ad;
 import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
 import domain.exceptions.TitleAndDescriptionAreTheSameException;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import services.AdDatePostedFormat;
 
 
 public class AdShould {
@@ -14,7 +17,7 @@ public class AdShould {
         AdTitle adTitle = new AdTitle("Esto es una prueba");
         AdDescription adDescription = new AdDescription("Esto es una prueba");
 
-        Assertions.assertThrows(TitleAndDescriptionAreTheSameException.class, () -> new Ad(adTitle, adDescription, "19/03/2020"));
+        Assertions.assertThrows(TitleAndDescriptionAreTheSameException.class, () -> new Ad(adTitle, adDescription, new AdDatePostedFormat("18/03/2020")));
 
     }
 

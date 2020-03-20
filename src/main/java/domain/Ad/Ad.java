@@ -4,15 +4,16 @@ import domain.Ad.DTO.AdDTO;
 import domain.Ad.DTO.AdDTODescription;
 import domain.Ad.DTO.AdDTOTitle;
 import domain.exceptions.TitleAndDescriptionAreTheSameException;
+import services.AdDatePostedFormat;
 
 import java.util.Objects;
 
 public class Ad {
     private AdTitle adTitle;
     private AdDescription adDescription;
-    private String date;
+    private AdDatePostedFormat date;
 
-    public Ad(AdTitle adTitle, AdDescription adDescription, String date) {
+    public Ad(AdTitle adTitle, AdDescription adDescription, AdDatePostedFormat date) {
         if(checkTitleAndDescription(adTitle,adDescription)) throw new TitleAndDescriptionAreTheSameException();
         this.adTitle = adTitle;
         this.adDescription = adDescription;
@@ -35,6 +36,7 @@ public class Ad {
         return adDTO;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,5 +50,10 @@ public class Ad {
     @Override
     public int hashCode() {
         return Objects.hash(adTitle, adDescription, date);
+    }
+
+
+    public <T> Comparable getDate() {
+        return this.date.createDTOdate().adDate;
     }
 }

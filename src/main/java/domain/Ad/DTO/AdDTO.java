@@ -2,13 +2,14 @@ package domain.Ad.DTO;
 
 import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
+import services.AdDatePostedFormat;
 
 import java.util.Objects;
 
 public class AdDTO {
     public AdTitle adTitle;
     public AdDescription adDescription;
-    public String date;
+    public AdDatePostedFormat date;
 
     @Override
     public boolean equals(Object o) {

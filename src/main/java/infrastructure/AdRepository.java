@@ -4,6 +4,7 @@ import domain.Ad.Ad;
 import domain.Ad.DTO.AdDTO;
 import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
+import services.AdDatePostedFormat;
 
 import java.util.List;
 
@@ -18,5 +19,6 @@ public interface AdRepository {
 
     AdDTO getAd(AdTitle adTitle);
 
+    void purge(AdDatePostedFormat date);
 }
 

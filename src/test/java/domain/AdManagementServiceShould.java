@@ -1,3 +1,5 @@
+package domain;
+
 import domain.Ad.Ad;
 import domain.Ad.DTO.AdDTO;
 import domain.Ad.AdDescription;
@@ -13,7 +15,7 @@ import org.junit.jupiter.api.Assertions;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import services.AdDatePosted;
+import services.AdDatePostedFormat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ import static org.mockito.Mockito.when;
 
 public class AdManagementServiceShould {
     @Mock
-    AdDatePosted adDatePosted;
+    AdDatePostedFormat adDatePostedFormat;
     @Mock
     AdRepository adRepositoryInMemory;
     @InjectMocks
@@ -38,8 +40,7 @@ public class AdManagementServiceShould {
 
         AdTitle adTitle = new AdTitle("Primer anuncio");
         AdDescription adDescription = new AdDescription("El primer anuncio del mundo");
-        when(adDatePosted.getDate()).thenReturn("19/03/2020");
-        Ad ad = new Ad(adTitle, adDescription, adDatePosted.getDate() );
+        Ad ad = new Ad(adTitle, adDescription, adDatePostedFormat);
 
         adManagementService.add(adTitle, adDescription);
 
@@ -65,9 +66,8 @@ public class AdManagementServiceShould {
         AdDescription adDescription = new AdDescription("El primer anuncio del mundo");
         AdTitle newAdTitle = new AdTitle("Segundo anuncio");
         AdDescription newAdDescription = new AdDescription("El segundo anuncio del mundo");
-        when(adDatePosted.getDate()).thenReturn("19/03/2020");
-        Ad ad = new Ad(adTitle, adDescription, adDatePosted.getDate());
-        Ad newAd = new Ad(newAdTitle, newAdDescription, adDatePosted.getDate());
+        Ad ad = new Ad(adTitle, adDescription, new AdDatePostedFormat("19/03/2020"));
+        Ad newAd = new Ad(newAdTitle, newAdDescription, new AdDatePostedFormat("19/03/2020"));
         List<Ad> ads = new ArrayList<>();
         ads.add(ad);
         ads.add(newAd);
@@ -83,8 +83,7 @@ public class AdManagementServiceShould {
 
         AdTitle adTitle = new AdTitle("Primer anuncio");
         AdDescription adDescription = new AdDescription("El primer anuncio del mundo");
-        when(adDatePosted.getDate()).thenReturn("19/03/2020");
-        Ad ad = new Ad(adTitle, adDescription, adDatePosted.getDate());
+        Ad ad = new Ad(adTitle, adDescription, new AdDatePostedFormat("19/03/2020"));
         AdDTO adDTO = ad.createDTO();
         when(adRepositoryInMemory.getAd(adTitle)).thenReturn(adDTO);
 
@@ -102,6 +101,21 @@ public class AdManagementServiceShould {
 
         Assertions.assertThrows(AdDoesNotExistException.class, () -> adManagementService.remove(adTitle));
 
+    }
+
+    @Test
+    public void send_the_command_purge_to_catalog_with_formatted_date(){
+
+        AdTitle adTitle = new AdTitle("Primer anuncio");
+        AdDescription adDescription = new AdDescription("El primer anuncio del mundo");
+        Ad ad = new Ad(adTitle, adDescription, new AdDatePostedFormat("18/03/2020"));
+
+        AdDTO adDTO = ad.createDTO();
+        when(adRepositoryInMemory.getAd(adTitle)).thenReturn(adDTO);
+
+        adManagementService.purge(new AdDatePostedFormat("19/03/2020"));
+
+        verify(adRepositoryInMemory).purge(new AdDatePostedFormat("19/03/2020"));
     }
 
 }

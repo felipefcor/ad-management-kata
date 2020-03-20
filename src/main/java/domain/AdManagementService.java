@@ -8,21 +8,23 @@ import domain.exceptions.AdDoesNotExistException;
 import domain.exceptions.RepeteadAdException;
 import infrastructure.AdRepository;
 import services.AdDatePosted;
+import services.AdDatePostedFormat;
 
 import java.util.List;
 
 public class AdManagementService {
     private final AdRepository adRepository;
-    private final AdDatePosted adDatePosted;
+    private final AdDatePostedFormat adDatePostedFormat;
 
-    public AdManagementService(AdRepository adRepository, AdDatePosted adDatePosted) {
+    public AdManagementService(AdRepository adRepository, AdDatePostedFormat adDatePostedFormat) {
         this.adRepository = adRepository;
-        this.adDatePosted = adDatePosted;
+        this.adDatePostedFormat = adDatePostedFormat;
+
     }
 
     public void add(AdTitle adTitle, AdDescription adDescription) throws RepeteadAdException {
         if (adRepository.matchAd(adTitle, adDescription)) throw new RepeteadAdException();
-        adRepository.save(new Ad(adTitle, adDescription, adDatePosted.getDate()));
+        adRepository.save(new Ad(adTitle, adDescription, adDatePostedFormat));
     }
 
     public List<Ad> getAdList() {
@@ -36,5 +38,9 @@ public class AdManagementService {
 
     public AdDTO getAd(AdTitle adTitle) {
         return adRepository.getAd(adTitle);
+    }
+
+    public void purge(AdDatePostedFormat date) {
+        adRepository.purge(date);
     }
 }

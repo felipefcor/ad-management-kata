@@ -1,2 +1,2 @@
-# ad-management-kata
+# domain.ad-management-kata
 Ad Management
