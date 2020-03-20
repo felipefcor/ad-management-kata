@@ -1,7 +1,6 @@
 package infrastructure;
 
 import domain.Ad.Ad;
-import domain.Ad.AdAccesses;
 import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
 import org.junit.Assert;
@@ -91,6 +90,23 @@ public class AdRepositoryInMemoryShould {
                 adRepositoryInMemory.save(ad);
             }
         }
+        Assert.assertEquals(100, adRepositoryInMemory.getAdList().size());
+    }
+
+    @Test
+    public void remove_the_less_visited_ad_when_the_catalog_reaches_100_ads(){
+        AdRepositoryInMemory adRepositoryInMemory = new AdRepositoryInMemoryExpireByOldestAd();
+
+       for (int i = 1; i < 7 ; i++) {
+            for (int j = 10; j <30 ; j++) {
+                AdTitle adTitle = new AdTitle("Primer anuncio" + i);
+                AdDescription adDescription = new AdDescription("El primer anuncio del mundo" + i );
+                Ad ad = new Ad(adTitle, adDescription, new AdDatePostedFormat(Integer.toString(j) + "/0"+ Integer.toString(i) + "/2020"));
+                ad.createDTO().adAccesses.createAdAccessesDTO().queueVisits.add(i+j);
+                adRepositoryInMemory.save(ad);
+            }
+        }
+
         Assert.assertEquals(100, adRepositoryInMemory.getAdList().size());
     }
 
