@@ -1,5 +1,7 @@
 package infrastructure;
 
+import domain.Ad.Ad;
+import domain.Ad.AdTitle;
 import domain.user.DTO.UserDTO;
 import domain.user.User;
 import java.util.ArrayList;
@@ -23,4 +25,20 @@ public class UserRepository {
     }
 
 
+    public void removeFavourite(Ad ad) {
+        for (User user : userList) {
+            UserDTO userDTO = user.createUserDTO();
+            userDTO.favoriteAds.remove(ad);
+        }
+    }
+
+    public int getLengthUserFavourites() {
+        int lengthFavourites = 0;
+        for (User user : userList) {
+            UserDTO userDTO = user.createUserDTO();
+            lengthFavourites = userDTO.favoriteAds.size();
+        }
+        return lengthFavourites;
+
+    }
 }

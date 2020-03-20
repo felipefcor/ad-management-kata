@@ -19,6 +19,7 @@ public class User {
     public UserDTO createUserDTO() {
         UserDTO userDTO = new UserDTO();
         userDTO.userId = this.userId;
+        userDTO.favoriteAds = this.favoriteAds;
         return userDTO;
     }
 
