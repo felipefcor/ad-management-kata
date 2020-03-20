@@ -17,7 +17,7 @@ public class AdRepositoryInMemory implements AdRepository {
 
     @Override
     public Boolean matchAd(AdTitle adTitle, AdDescription adDescription) {
-        for (Ad ad : adList) {
+        for (Ad ad : this.adList) {
             AdDTO adDTO = ad.createDTO();
             if(adDTO.adTitle.equals(adTitle) && adDTO.adDescription.equals(adDescription)) return true;
         }
@@ -31,15 +31,15 @@ public class AdRepositoryInMemory implements AdRepository {
 
     @Override
     public void remove(AdTitle adTitle) {
-     for (Ad ad : adList) {
+     for (Ad ad : this.adList) {
          AdDTO adDTO = ad.createDTO();
-         if(adDTO.adTitle.equals(adTitle)) adList.remove(adDTO);
+         if(adDTO.adTitle.equals(adTitle)) adList.remove(ad);
         }
     }
 
     @Override
     public AdDTO getAd(AdTitle adTitle) {
-        for (Ad ad : adList) {
+        for (Ad ad : this.adList) {
             AdDTO adDTO = ad.createDTO();
             if(adDTO.adTitle.equals(adTitle)) return adDTO;
         }
@@ -49,14 +49,11 @@ public class AdRepositoryInMemory implements AdRepository {
     @Override
     public void purge(AdDatePostedFormat adDate) {
         Date dateFormmatted = adDate.getDateFormatted();
-
-        for (Ad ad : adList) {
-            AdDTO adDTO = ad.createDTO();
+        for (Iterator<Ad> adList = this.adList.iterator(); adList.hasNext(); ) {
+            Ad newAd = adList.next();
+            AdDTO adDTO = newAd.createDTO();
             Date dateFormmattedList = adDTO.date.getDateFormatted();
-            if (dateFormmattedList.before(dateFormmatted)) adList.remove(adDTO);
+            if (dateFormmattedList.before(dateFormmatted)) adList.remove();
         }
-
     }
-
-
 }
