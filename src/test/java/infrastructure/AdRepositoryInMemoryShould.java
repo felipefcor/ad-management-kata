@@ -3,6 +3,8 @@ package infrastructure;
 import domain.Ad.Ad;
 import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
+import domain.user.User;
+import domain.user.UserId;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import services.AdDatePostedFormat;
@@ -109,7 +111,5 @@ public class AdRepositoryInMemoryShould {
 
         Assert.assertEquals(100, adRepositoryInMemory.getAdList().size());
     }
-
-
 
 }

@@ -3,10 +3,11 @@ package domain;
 import domain.Ad.Ad;
 import domain.Ad.DTO.AdDTO;
 import domain.Ad.AdDescription;
-import domain.AdManagementService;
 import domain.Ad.AdTitle;
 import domain.exceptions.AdDoesNotExistException;
 import domain.exceptions.RepeteadAdException;
+import domain.user.User;
+import domain.user.UserId;
 import infrastructure.AdRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -117,5 +118,6 @@ public class AdManagementServiceShould {
 
         verify(adRepositoryInMemory).purge(new AdDatePostedFormat("19/03/2020"));
     }
+
 
 }
