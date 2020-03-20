@@ -17,8 +17,6 @@ public class AdDescription {
         return adDTODescription;
     }
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

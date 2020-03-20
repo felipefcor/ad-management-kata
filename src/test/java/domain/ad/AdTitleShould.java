@@ -1,3 +1,5 @@
+package domain.ad;
+
 import domain.Ad.AdTitle;
 import domain.exceptions.TitleTooLongException;
 import org.junit.Test;

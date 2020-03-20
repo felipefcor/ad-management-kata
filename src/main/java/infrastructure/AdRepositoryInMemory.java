@@ -4,9 +4,8 @@ import domain.Ad.Ad;
 import domain.Ad.DTO.AdDTO;
 import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
-
-import java.util.ArrayList;
-import java.util.List;
+import services.AdDatePostedFormat;
+import java.util.*;
 
 public class AdRepositoryInMemory implements AdRepository {
     List<Ad> adList = new ArrayList<>();
@@ -47,6 +46,17 @@ public class AdRepositoryInMemory implements AdRepository {
         return null;
     }
 
+    @Override
+    public void purge(AdDatePostedFormat adDate) {
+        Date dateFormmatted = adDate.getDateFormatted();
+
+        for (Ad ad : adList) {
+            AdDTO adDTO = ad.createDTO();
+            Date dateFormmattedList = adDTO.date.getDateFormatted();
+            if (dateFormmattedList.before(dateFormmatted)) adList.remove(adDTO);
+        }
+
+    }
 
 
 }
