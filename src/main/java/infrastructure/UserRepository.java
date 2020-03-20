@@ -31,14 +31,4 @@ public class UserRepository {
             userDTO.favoriteAds.remove(ad);
         }
     }
-
-    public int getLengthUserFavourites() {
-        int lengthFavourites = 0;
-        for (User user : userList) {
-            UserDTO userDTO = user.createUserDTO();
-            lengthFavourites = userDTO.favoriteAds.size();
-        }
-        return lengthFavourites;
-
-    }
 }

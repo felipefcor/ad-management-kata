@@ -112,5 +112,4 @@ public class AdRepositoryInMemoryShould {
         Assert.assertEquals(100, adRepositoryInMemory.getAdList().size());
     }
 
-
 }

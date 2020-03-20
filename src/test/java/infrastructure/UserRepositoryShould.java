@@ -38,6 +38,6 @@ public class UserRepositoryShould {
 
         userRepository.removeFavourite(ad);
 
-        Assert.assertEquals(1, userRepository.getLengthUserFavourites());
+        Assert.assertEquals(1, user.getFavoriteAds().size());
     }
 }
