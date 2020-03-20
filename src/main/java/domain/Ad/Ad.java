@@ -36,6 +36,9 @@ public class Ad {
         return adDTO;
     }
 
+    public <T> Comparable getDate() {
+        return this.date.createDTOdate().adDate;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -50,10 +53,5 @@ public class Ad {
     @Override
     public int hashCode() {
         return Objects.hash(adTitle, adDescription, date);
-    }
-
-
-    public <T> Comparable getDate() {
-        return this.date.createDTOdate().adDate;
     }
 }

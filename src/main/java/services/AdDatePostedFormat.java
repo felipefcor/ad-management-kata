@@ -1,11 +1,8 @@
 package services;
 
-import domain.Ad.DTO.AdDTODescription;
-
 import java.text.DateFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Objects;
 

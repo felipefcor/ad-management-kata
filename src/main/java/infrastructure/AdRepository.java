@@ -9,6 +9,7 @@ import services.AdDatePostedFormat;
 import java.util.List;
 
 public interface AdRepository {
+
     void save(Ad ad);
 
     Boolean matchAd(AdTitle adTitle, AdDescription adDescription);

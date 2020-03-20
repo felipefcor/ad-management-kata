@@ -7,7 +7,6 @@ import domain.Ad.AdTitle;
 import domain.exceptions.AdDoesNotExistException;
 import domain.exceptions.RepeteadAdException;
 import infrastructure.AdRepository;
-import services.AdDatePosted;
 import services.AdDatePostedFormat;
 
 import java.util.List;

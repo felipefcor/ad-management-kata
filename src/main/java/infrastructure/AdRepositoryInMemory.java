@@ -7,22 +7,21 @@ import domain.Ad.AdTitle;
 import services.AdDatePostedFormat;
 import services.DTOdate;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 public class AdRepositoryInMemory implements AdRepository {
     List<Ad> adList = new ArrayList<>();
+    SortAdsByCountry sortAdsByCountry;
 
     @Override
     public void save(Ad ad) {
-        if (this.adList.size() == 100) sortListAdsbyDate();
+        if (this.adList.size() == 100) sortAds();
         this.adList.add(ad);
     }
 
-    private void sortListAdsbyDate() {
-        this.adList.remove(this.adList.size() - 1);
-        this.adList.sort((ad1, ad2) -> ad2.getDate().compareTo(ad1.getDate()));
-    }
+    private void sortAds(){
+       sortAdsByCountry.sortAds(this.adList);
+   }
 
 
     @Override

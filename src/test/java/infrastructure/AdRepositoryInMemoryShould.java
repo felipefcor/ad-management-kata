@@ -81,7 +81,7 @@ public class AdRepositoryInMemoryShould {
 
     @Test
     public void remove_the_oldest_ad_when_the_catalog_reaches_100_ads(){
-        AdRepositoryInMemory adRepositoryInMemory = new AdRepositoryInMemory();
+        AdRepositoryInMemory adRepositoryInMemory = new AdRepositoryInMemoryExpireByOldestAd();
         for (int i = 1; i < 7 ; i++) {
             for (int j = 10; j <30 ; j++) {
                 AdTitle adTitle = new AdTitle("Primer anuncio" + i);
