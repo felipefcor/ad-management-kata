@@ -70,7 +70,10 @@ public class AdRepositoryInMemory implements AdRepository {
             AdDTO adDTO = newAd.createDTO();
             DTOdate newDateDTO = adDTO.date.createDTOdate();
             Date dateFormmattedList = newDateDTO.adDate;
-            if (dateFormmattedList.before(dtoDate.adDate)) adList.remove();
+            if (dateFormmattedList.before(dtoDate.adDate)){
+                userRepository.removeFavourite(newAd);
+                adList.remove();
+            }
         }
     }
 
