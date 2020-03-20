@@ -5,6 +5,9 @@ import domain.Ad.DTO.AdDTO;
 import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
 import services.AdDatePostedFormat;
+import services.DTOdate;
+
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class AdRepositoryInMemory implements AdRepository {
@@ -12,8 +15,15 @@ public class AdRepositoryInMemory implements AdRepository {
 
     @Override
     public void save(Ad ad) {
-        adList.add(ad);
+        if (this.adList.size() == 100) sortListAdsbyDate();
+        this.adList.add(ad);
     }
+
+    private void sortListAdsbyDate() {
+        this.adList.remove(this.adList.size() - 1);
+        this.adList.sort((ad1, ad2) -> ad2.getDate().compareTo(ad1.getDate()));
+    }
+
 
     @Override
     public Boolean matchAd(AdTitle adTitle, AdDescription adDescription) {
@@ -48,12 +58,14 @@ public class AdRepositoryInMemory implements AdRepository {
 
     @Override
     public void purge(AdDatePostedFormat adDate) {
-        Date dateFormmatted = adDate.getDateFormatted();
+        DTOdate dtoDate  = adDate.createDTOdate();
+
         for (Iterator<Ad> adList = this.adList.iterator(); adList.hasNext(); ) {
             Ad newAd = adList.next();
             AdDTO adDTO = newAd.createDTO();
-            Date dateFormmattedList = adDTO.date.getDateFormatted();
-            if (dateFormmattedList.before(dateFormmatted)) adList.remove();
+            DTOdate newDateDTO = adDTO.date.createDTOdate();
+            Date dateFormmattedList = newDateDTO.adDate;
+            if (dateFormmattedList.before(dtoDate.adDate)) adList.remove();
         }
     }
 }

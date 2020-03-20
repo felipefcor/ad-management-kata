@@ -4,5 +4,5 @@ import java.util.Date;
 
 public interface AdDatePosted {
     String getDate();
-    Date getDateFormatted();
+    Date getDateFormatted(String date);
 }

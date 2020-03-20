@@ -51,4 +51,9 @@ public class Ad {
     public int hashCode() {
         return Objects.hash(adTitle, adDescription, date);
     }
+
+
+    public <T> Comparable getDate() {
+        return this.date.createDTOdate().adDate;
+    }
 }
