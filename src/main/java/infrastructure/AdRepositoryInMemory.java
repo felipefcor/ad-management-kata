@@ -4,6 +4,7 @@ import domain.Ad.Ad;
 import domain.Ad.DTO.AdDTO;
 import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
+import domain.user.User;
 import services.AdDatePostedFormat;
 import services.DTOdate;
 
@@ -66,5 +67,10 @@ public class AdRepositoryInMemory implements AdRepository {
             Date dateFormmattedList = newDateDTO.adDate;
             if (dateFormmattedList.before(dtoDate.adDate)) adList.remove();
         }
+    }
+
+    @Override
+    public void adMarkedAsFavoriteByUser(User user, Ad ad) {
+
     }
 }

@@ -3,10 +3,11 @@ package domain;
 import domain.Ad.Ad;
 import domain.Ad.DTO.AdDTO;
 import domain.Ad.AdDescription;
-import domain.AdManagementService;
 import domain.Ad.AdTitle;
 import domain.exceptions.AdDoesNotExistException;
 import domain.exceptions.RepeteadAdException;
+import domain.user.User;
+import domain.user.UserId;
 import infrastructure.AdRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -116,6 +117,20 @@ public class AdManagementServiceShould {
         adManagementService.purge(new AdDatePostedFormat("19/03/2020"));
 
         verify(adRepositoryInMemory).purge(new AdDatePostedFormat("19/03/2020"));
+    }
+
+    @Test
+    public void mark_ad_as_a_favorite_by_user(){
+
+        AdTitle adTitle = new AdTitle("Primer anuncio");
+        AdDescription adDescription = new AdDescription("El primer anuncio del mundo");
+        Ad ad = new Ad(adTitle, adDescription, adDatePostedFormat);
+        UserId userId = new UserId(1);
+        User user = new User(userId);
+
+        adManagementService.adMarkedAsFavoriteByUser(user, ad);
+
+        verify(adRepositoryInMemory).adMarkedAsFavoriteByUser(user, ad);
     }
 
 }

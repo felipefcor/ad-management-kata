@@ -6,6 +6,7 @@ import domain.Ad.AdDescription;
 import domain.Ad.AdTitle;
 import domain.exceptions.AdDoesNotExistException;
 import domain.exceptions.RepeteadAdException;
+import domain.user.User;
 import infrastructure.AdRepository;
 import services.AdDatePostedFormat;
 
@@ -41,5 +42,9 @@ public class AdManagementService {
 
     public void purge(AdDatePostedFormat date) {
         adRepository.purge(date);
+    }
+
+    public void adMarkedAsFavoriteByUser(User user, Ad ad) {
+        adRepository.adMarkedAsFavoriteByUser(user, ad);
     }
 }
